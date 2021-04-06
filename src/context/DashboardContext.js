@@ -4,11 +4,11 @@ export const dashboardContextFunc = createContext()
 
 const DashboardContext = ({ children }) => {
 
-    const [projects, setProjects] = useState([1, 2]);
+    const [projects, setProjects] = useState([]);
 
     return (
         <dashboardContextFunc.Provider value={{
-            projects
+            projects, setProjects
         }}>
             {children}
         </dashboardContextFunc.Provider>
@@ -16,3 +16,4 @@ const DashboardContext = ({ children }) => {
 }
 
 export default DashboardContext
+// [{ id: Number, todos: [{ id: Number, name: "" }] }]
