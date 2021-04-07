@@ -8,7 +8,7 @@ const CreateCard = () => {
     const { projects, setProjects } = useContext(dashboardContextFunc);
 
     const createNewProject = () => {
-        const newCard = { id: uuidv4(), todos: [] };
+        const newCard = { id: uuidv4(), todos: [], category: "", cardTitle: "", createdOn: new Date() };
         const projectsCopy = [...projects, newCard]
         setProjects(projectsCopy)
     }

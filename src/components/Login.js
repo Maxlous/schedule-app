@@ -1,5 +1,5 @@
 import login from "../assets/login.jpg"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { RiLoginCircleLine } from "react-icons/ri"
 import { useHistory } from "react-router-dom"
 
@@ -7,6 +7,10 @@ const Login = () => {
 
     const [userName, setUserName] = useState("");
     let history = useHistory();
+
+    useEffect(() => {
+        if (localStorage.getItem("userName")) history.push("/dashboard")
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -16,7 +20,6 @@ const Login = () => {
 
     const handleNameInput = (e) => {
         setUserName(val => e.target.value)
-        console.log(userName)
     }
 
     return (

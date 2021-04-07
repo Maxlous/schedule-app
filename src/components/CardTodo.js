@@ -1,6 +1,7 @@
 import { TiDelete } from "react-icons/ti"
 import { useContext } from "react"
-import { dashboardContextFunc } from "../context/DashboardContext"
+import { dashboardContextFunc } from "../context/DashboardContext";
+import "./CardTodo.css"
 
 const CardTodo = ({ todoText, todoId, cardId }) => {
 
@@ -17,7 +18,14 @@ const CardTodo = ({ todoText, todoId, cardId }) => {
     }
 
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center mb-1">
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+            <div className="page__toggle">
+                <label className="toggle">
+                    <input className="toggle__input" type="checkbox" />
+                    <span className="toggle__label">
+                    </span>
+                </label>
+            </div>
             {todoText}
             <div>
                 <TiDelete style={{ cursor: "pointer" }} onClick={deleteTodoItem} size="1.6em"></TiDelete>
