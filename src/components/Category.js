@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { dashboardContextFunc } from "../context/DashboardContext"
-
+import "./Category.css"
 const Category = ({ categoryName }) => {
 
     const { checkedCategories, setCheckedCategories } = useContext(dashboardContextFunc);
@@ -19,8 +19,8 @@ const Category = ({ categoryName }) => {
     }
 
     return (
-        <li className="list-group-item mt-3">
-            <input onChange={handleCheck} className="form-check-input me-3" type="checkbox" value={categoryName} aria-label={categoryName} />
+        <li className="list-group-item border-0 mt-3 gm-effect">
+            <input onChange={handleCheck} className="form-check-input me-3 category-checkbox" type="checkbox" value={categoryName} aria-label={categoryName} style={{ cursor: "pointer" }} />
             {categoryName}
         </li>
     )

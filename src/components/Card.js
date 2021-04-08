@@ -65,14 +65,19 @@ const Card = ({ cardId }) => {
         if (lengthOfProjects === 1) localStorage.removeItem("schedule-app-dashboard")
     }
 
+    const handleMouseOver = (e) => {
+        e.stopPropagation();
+        setEditMode(!editMode)
+    }
+
     return (
-        <div className="card m-5" style={{ width: "25rem", height: "25rem", overflow: "auto" }}>
+        <div onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOver} className="card m-5" style={{ width: "20rem", height: "25rem", }}>
             <div className="d-flex justify-content-between">
                 {editMode && <GiSave onClick={handleSave} size="1.6em" style={{ cursor: "pointer" }} />}
                 {editMode && <RiDeleteBin6Fill onClick={deleteCard} size="1.6em" style={{ cursor: "pointer" }} />}
             </div>
             <div className="card-body">
-                <h5 className="card-title text-center">{titleOfCard ? titleOfCard : ""}</h5>
+                <h5 className="card-title text-center gm-effect">{titleOfCard ? titleOfCard : ""}</h5>
                 {editMode &&
                     <div className="input-group mb-3">
                         <input onChange={handleTitle} type="text" className="form-control" placeholder="enter a title..." id="project-title" />
@@ -87,7 +92,7 @@ const Card = ({ cardId }) => {
                         <input onChange={onTodoInputChange}
                             type="text" className="form-control" placeholder="add to-do" aria-label="todo-input" aria-describedby="todo-input-area" />
                         <span className="input-group-text" id="todo-input-area">
-                            <RiAddCircleFill onClick={addTodoItem} size="1.6em" />
+                            <RiAddCircleFill onClick={addTodoItem} size="1.6em" style={{ cursor: "pointer" }} />
                         </span>
                     </div>}
                 {currentCard.todos.map((item) => {

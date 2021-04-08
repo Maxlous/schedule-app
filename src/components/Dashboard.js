@@ -16,7 +16,20 @@ const Dashboard = () => {
         }
     }
 
+    const sortByDate = (arr) => {
+        arr.sort((a, b) => {
+            return new Date(a.createdOn).getTime() - new Date(b.createdOn).getTime();
+        });
+    };
+
+    let sortedArray = [...filteredArray]
+    sortByDate(sortedArray);
+
+    let projectsCopy = [...projects]
+    sortByDate(projectsCopy)
+
     useEffect(() => {
+
         for (let i = 0; i < checkedCategories.length; i++) {
             for (let j = 0; j < projects.length; j++) {
                 if (checkedCategories[i] === projects[j].category.toUpperCase()) {
@@ -24,21 +37,29 @@ const Dashboard = () => {
                 }
             }
         }
+        //eslint-disable-next-line
+        sortedArray = [...filteredArray]
+        sortByDate(sortedArray)
+        //eslint-disable-next-line
+        projectsCopy = [...projects]
+        sortByDate(projectsCopy)
     })
 
     return (
-        <div className="mt-5 d-flex" style={{ border: "1px solid grey" }}>
-            {filteredArray.length > 0 ? filteredArray.map((item) => {
-                return (
-                    <Card key={item.id} cardId={item.id} />
-                )
-            }) : projects.map((item) => {
-                return (
-                    <Card key={item.id} cardId={item.id} />
-                )
-            })}
+        <>
+            <div className="d-flex flex-wrap justify-content-center">
+                {sortedArray.length > 0 ? sortedArray.map((item) => {
+                    return (
+                        <Card key={item.id} cardId={item.id} />
+                    )
+                }) : projectsCopy.map((item) => {
+                    return (
+                        <Card key={item.id} cardId={item.id} />
+                    )
+                })}
+            </div>
             <CreateCard />
-        </div>
+        </>
     )
 }
 

@@ -1,15 +1,16 @@
 import Categories from "./Categories"
 import Dashboard from "./Dashboard"
 import Information from "./Information"
+import "./Main.css"
 
 const Main = () => {
     return (
-        <div className="row d-flex vh-100 align-items-center">
-            <aside className="col-3 m-5">
+        <div id="main-div" className="container-fluid d-flex row vh-100 justify-content-center">
+            <aside id="aside" className="col-xxl">
                 <Information />
                 <Categories />
             </aside>
-            <article className="col-8">
+            <article className="col-xxl d-flex flex-wrap justify-content-center align-items-center ">
                 <Dashboard />
             </article>
         </div>

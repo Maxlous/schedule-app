@@ -27,11 +27,13 @@ const Login = () => {
             <img src={login} className="card-img-top" alt="lock hanging in fence" />
             <div className="card-body">
                 <h5 className="card-title text-center">Identify Yourself!</h5>
-                <div className="input-group mb-3 mt-4">
-                    <span className="input-group-text" id="basic-addon1"><RiLoginCircleLine /></span>
-                    <input type="text" onChange={handleNameInput} className="form-control" placeholder="Name & Surname" aria-label="Username" aria-describedby="basic-addon1" />
-                    <button onClick={handleSubmit} type="submit" className="btn btn-dark">Let's Go!</button>
-                </div>
+                <form className="d-flex flex-row" onSubmit={handleSubmit}>
+                    <div className="input-group mb-3 mt-4">
+                        <span className="input-group-text" id="basic-addon1"><RiLoginCircleLine /></span>
+                        <input type="text" onChange={handleNameInput} className="form-control" placeholder="Name & Surname" aria-label="Username" aria-describedby="basic-addon1" required />
+                        <button type="submit" className="btn btn-dark">Let's Go!</button>
+                    </div>
+                </form>
             </div>
         </div>
 

@@ -14,12 +14,14 @@ const CreateCard = () => {
     }
 
     return (
-        <div className="card" style={{ width: "25rem" }}>
+        <div style={{
+            width: "20rem", height: "25rem", border: "none", marginTop: "9em"
+        }}>
             <RiMenuAddFill className="card-img-top" size="10em" />
             <div className="card-body d-flex justify-content-center">
-                <button onClick={createNewProject} className="btn btn-dark">Create New</button>
+                <button style={{ width: "5em", height: "4em" }} onClick={createNewProject} className="btn btn-dark">New Card</button>
             </div>
-        </div>
+        </div >
     )
 }
 
