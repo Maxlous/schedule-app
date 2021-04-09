@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { dashboardContextFunc } from "../context/DashboardContext"
-import "./Category.css"
+import "../styles/Category.css"
 const Category = ({ categoryName }) => {
 
     const { checkedCategories, setCheckedCategories } = useContext(dashboardContextFunc);
@@ -10,11 +10,9 @@ const Category = ({ categoryName }) => {
         if (e.target.checked) {
             categoriesArray.push(e.target.value)
             setCheckedCategories(val => categoriesArray)
-            // console.log(categoriesArray, checkedCategories)
         } else {
             const updatedCategoriesArray = categoriesArray.filter((item) => item !== e.target.value);
             setCheckedCategories(val => updatedCategoriesArray)
-            // console.log(updatedCategoriesArray, checkedCategories)
         }
     }
 

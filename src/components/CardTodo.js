@@ -1,9 +1,10 @@
 import { TiDelete } from "react-icons/ti"
+import { GrFormSchedule } from "react-icons/gr"
 import { useContext } from "react"
 import { dashboardContextFunc } from "../context/DashboardContext";
-import "./CardTodo.css"
+import "../styles/CardTodo.css"
 
-const CardTodo = ({ todoText, todoId, cardId }) => {
+const CardTodo = ({ todoText, todoId, cardId, editMode, overlay }) => {
 
     const { projects, setProjects } = useContext(dashboardContextFunc);
 
@@ -18,7 +19,7 @@ const CardTodo = ({ todoText, todoId, cardId }) => {
     }
 
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center">
+        <li style={overlay ? { background: "rgba(0,0,0,0.1)" } : null} className="list-group-item d-flex justify-content-between align-items-center mb-2">
             <div className="page__toggle">
                 <label className="toggle">
                     <input className="toggle__input" type="checkbox" />
@@ -28,7 +29,7 @@ const CardTodo = ({ todoText, todoId, cardId }) => {
             </div>
             {todoText}
             <div>
-                <TiDelete style={{ cursor: "pointer" }} onClick={deleteTodoItem} size="1.6em"></TiDelete>
+                {editMode ? <TiDelete style={{ cursor: "pointer" }} onClick={deleteTodoItem} size="1.6em" /> : <GrFormSchedule size="1.6em" />}
             </div>
         </li>
     )

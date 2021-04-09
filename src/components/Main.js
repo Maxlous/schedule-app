@@ -1,7 +1,7 @@
 import Categories from "./Categories"
 import Dashboard from "./Dashboard"
 import Information from "./Information"
-import "./Main.css"
+import "../styles/Main.css"
 
 const Main = () => {
     return (

@@ -2,7 +2,7 @@
 .toggle {
   --uiToggleSize: var(--toggleSize, 1.25rem);
   --uiToggleBorderWidth: var(--toggleBorderWidth, 2px);
-  --uiToggleColor: var(--toggleColor, #222);
+  --uiToggleColor: var(--toggleColor, #4d4ae8);
 
   display: var(--toggleDisplay, inline-flex);
   position: relative;
@@ -101,35 +101,11 @@
   border-bottom-width: var(--uiToggleArrowWidth);
 }
 
-/*
-  States
-  */
-
-/* focus state */
-
-.toggle:focus-within {
-  outline: var(--toggleOutlineWidthFocus, 3px) solid
-    var(--toggleOutlineColorFocus, currentColor);
-  outline-offset: var(--toggleOutlineOffsetFocus, 5px);
-}
-
-/* disabled state */
-
 .toggle__input:disabled ~ .toggle__label {
   opacity: var(--toggleOpacityDisabled, 0.24);
   cursor: var(--toggleCursorDisabled, not-allowed);
   user-select: none;
 }
-
-/*
-  =====
-  PRESENTATION STYLES
-  =====
-  */
-
-/* 
-  The demo skin
-  */
 
 .toggle__label::after {
   border-radius: var(--toggleBorderRadius, 2px);

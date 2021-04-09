@@ -1,0 +1,28 @@
+#card-overlay {
+  position: absolute;
+  z-index: 100;
+  top: 9em;
+  left: 7em;
+}
+
+#card-overlay-text {
+  position: absolute;
+  top: -1em;
+  left: -0.8em;
+  background: white;
+  font-size: 2em;
+  padding-left: 1.3em;
+  padding-right: 1.3em;
+}
+
+#card-overlay-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 15em;
+  left: -4.5em;
+  top: 5.5em;
+  background: white;
+}

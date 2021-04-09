@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from "react"
 import { dashboardContextFunc } from "../context/DashboardContext"
 import CardTodo from "./CardTodo";
-import { RiDeleteBin6Fill, RiAddCircleFill } from "react-icons/ri"
+import { RiDeleteBin6Fill, RiAddCircleFill, RiEditBoxFill } from "react-icons/ri"
 import { GiSave } from "react-icons/gi"
 import { v4 as uuidv4 } from "uuid"
-
+import "../styles/Card.css"
+import { FcDeleteDatabase } from "react-icons/fc"
 const Card = ({ cardId }) => {
 
     const { projects, setProjects } = useContext(dashboardContextFunc);
@@ -12,6 +13,7 @@ const Card = ({ cardId }) => {
     const [todo, setTodo] = useState("")
     const [cardCategory, setCardCategory] = useState("")
     const [editMode, setEditMode] = useState(false)
+    const [overlay, setOverlay] = useState(false)
 
     let currentCard = projects.filter((item) => item.id === cardId)[0]
     let titleOfCard = currentCard.cardTitle;
@@ -42,6 +44,7 @@ const Card = ({ cardId }) => {
         const updatedCard = { ...currentCard, cardTitle, category: cardCategory }
         const updatedProject = [...withoutCurrentCard, updatedCard]
         setProjects(val => updatedProject)
+        setEditMode(false)
     }
 
     const onTodoInputChange = (e) => {
@@ -65,13 +68,34 @@ const Card = ({ cardId }) => {
         if (lengthOfProjects === 1) localStorage.removeItem("schedule-app-dashboard")
     }
 
-    const handleMouseOver = (e) => {
-        e.stopPropagation();
-        setEditMode(!editMode)
+    const defaultCardStyle = {
+        width: "20rem",
+        height: "25rem",
+    }
+
+    const hoverCardStyle = {
+        width: "20rem",
+        height: "25rem",
+        background: "rgba(0,0,0,0.1)"
+    }
+
+    const handleMouseEnter = (e) => {
+        setOverlay(true)
+    }
+
+    const handleMouseLeave = (e) => {
+        setOverlay(false)
     }
 
     return (
-        <div onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOver} className="card m-5" style={{ width: "20rem", height: "25rem", }}>
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="card m-5" style={overlay ? hoverCardStyle : defaultCardStyle}>
+            <div id="card-overlay">
+                <p id="card-overlay-text">{overlay ? "EDIT" : ""}</p>
+                <div id="card-overlay-icons">
+                    {overlay ? <RiEditBoxFill size="2.5em" style={{ cursor: "pointer", width: "6em" }} /> : ""}
+                    {overlay ? <FcDeleteDatabase size="3em" style={{ cursor: "pointer", width: "3.5em", paddingRight: "1rem" }} /> : ""}
+                </div>
+            </div>
             <div className="d-flex justify-content-between">
                 {editMode && <GiSave onClick={handleSave} size="1.6em" style={{ cursor: "pointer" }} />}
                 {editMode && <RiDeleteBin6Fill onClick={deleteCard} size="1.6em" style={{ cursor: "pointer" }} />}
@@ -82,7 +106,7 @@ const Card = ({ cardId }) => {
                     <div className="input-group mb-3">
                         <input onChange={handleTitle} type="text" className="form-control" placeholder="enter a title..." id="project-title" />
                     </div>}
-                <h6 className="text-center fw-light">{categoryOfCard ? categoryOfCard : ""}</h6>
+                <h6 className="text-center fw-light mb-3">{categoryOfCard ? categoryOfCard : ""}</h6>
                 {editMode &&
                     <div className="input-group mb-3">
                         <input onChange={handleCategory} type="text" className="form-control" placeholder="enter a category..." id="project-category" />
@@ -97,7 +121,7 @@ const Card = ({ cardId }) => {
                     </div>}
                 {currentCard.todos.map((item) => {
                     return (
-                        <CardTodo key={item.id} todoText={item.name} todoId={item.id} cardId={cardId} />
+                        <CardTodo key={item.id} todoText={item.name} todoId={item.id} cardId={cardId} overlay={overlay} editMode={editMode} />
                     )
                 })}
             </div>
