@@ -16,3 +16,17 @@
   /* border: 1px solid #41b883; */
   background-color: black;
 }
+
+.category-badge {
+  background-color: #e5989b;
+}
+
+.cat-list-item {
+  font-size: 1.1em;
+  font-weight: 400;
+  color: #e5989b;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+}

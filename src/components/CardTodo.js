@@ -19,7 +19,7 @@ const CardTodo = ({ todoText, todoId, cardId, editMode, overlay }) => {
     }
 
     return (
-        <li style={overlay ? { background: "rgba(0,0,0,0.1)" } : null} className="list-group-item d-flex justify-content-between align-items-center mb-2">
+        <li style={overlay ? { background: "rgba(0,0,0,0.1)" } : null} className=" todo list-group-item d-flex justify-content-between align-items-center mb-2">
             <div className="page__toggle">
                 <label className="toggle">
                     <input className="toggle__input" type="checkbox" />

@@ -21,4 +21,3 @@ const DashboardContext = ({ children }) => {
 }
 
 export default DashboardContext
-// [{ id: Number, todos: [{ id: Number, name: "" }] }]

@@ -48,7 +48,7 @@
   font-size: var(--uiToggleSize); /* 1 */
 
   background-color: transparent;
-  border: var(--uiToggleBorderWidth) solid var(--uiToggleColor);
+  border: var(--uiToggleBorderWidth) solid #eee;
 
   position: absolute;
   left: 0;
@@ -129,4 +129,11 @@
 .toggle__input:not(:disabled) ~ .toggle__label::after {
   will-change: background-color;
   transition: background-color 0.2s ease-out;
+}
+
+.todo {
+  background: #fff;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
+  border-radius: 0.5em;
 }

@@ -5,13 +5,8 @@ import Category from "./Category"
 const Categories = () => {
 
     const { projects } = useContext(dashboardContextFunc);
-    let fetchCategories = projects.map((item) => item.category.toUpperCase())
-    let uniqueCategoryNames = Array.from(new Set(fetchCategories))
-
-    // useEffect(() => {
-    //     fetchCategories = projects.map((item) => item.category.toUpperCase());
-    //     uniqueCategoryNames = Array.from(new Set(fetchCategories))
-    // }, [checkedCategories])
+    const fetchCategories = projects.map((item) => item.category.toUpperCase())
+    const uniqueCategoryNames = Array.from(new Set(fetchCategories))
 
     return (
         <ul className="list-group">

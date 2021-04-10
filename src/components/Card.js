@@ -5,7 +5,8 @@ import { RiDeleteBin6Fill, RiAddCircleFill, RiEditBoxFill } from "react-icons/ri
 import { GiSave } from "react-icons/gi"
 import { v4 as uuidv4 } from "uuid"
 import "../styles/Card.css"
-import { FcDeleteDatabase } from "react-icons/fc"
+import { FcDeleteDatabase } from "react-icons/fc";
+
 const Card = ({ cardId }) => {
 
     const { projects, setProjects } = useContext(dashboardContextFunc);
@@ -80,7 +81,7 @@ const Card = ({ cardId }) => {
     }
 
     const handleMouseEnter = (e) => {
-        setOverlay(true)
+        if (!editMode) setOverlay(true)
     }
 
     const handleMouseLeave = (e) => {
@@ -92,8 +93,8 @@ const Card = ({ cardId }) => {
             <div id="card-overlay">
                 <p id="card-overlay-text">{overlay ? "EDIT" : ""}</p>
                 <div id="card-overlay-icons">
-                    {overlay ? <RiEditBoxFill size="2.5em" style={{ cursor: "pointer", width: "6em" }} /> : ""}
-                    {overlay ? <FcDeleteDatabase size="3em" style={{ cursor: "pointer", width: "3.5em", paddingRight: "1rem" }} /> : ""}
+                    {overlay ? <RiEditBoxFill onClick={() => { setEditMode(true); setOverlay(false) }} size="2.5em" style={{ cursor: "pointer", width: "6em" }} /> : ""}
+                    {overlay ? <FcDeleteDatabase onClick={deleteCard} size="3em" style={{ cursor: "pointer", width: "3.5em", paddingRight: "1rem" }} /> : ""}
                 </div>
             </div>
             <div className="d-flex justify-content-between">
