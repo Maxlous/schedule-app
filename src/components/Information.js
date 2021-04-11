@@ -16,6 +16,7 @@ const Information = () => {
     const cardNumber = projects.length;
     const fetchCategories = projects.map((item) => item.category.toUpperCase())
     const uniqueCategoriesNumber = Array.from(new Set(fetchCategories)).length;
+
     const getTodoItemsNumber = () => {
         let sum = 0;
         for (let i = 0; i < projects.length; i++) {
@@ -25,7 +26,9 @@ const Information = () => {
         }
         return sum
     }
-    let todoItemsNumber = getTodoItemsNumber()
+
+    const todoItemsNumber = getTodoItemsNumber()
+
     const sortByDate = (arr) => {
         arr.sort((a, b) => {
             return new Date(a.createdOn).getTime() - new Date(b.createdOn).getTime();
@@ -44,14 +47,16 @@ const Information = () => {
         try {
             getDate = projectsCopy[projectsCopy.length - 1].createdOn
         } catch {
+            //if there is no card yet prevent error
             return null
         }
+        //plus one to start months from 1 not 0
         let lastCreatedCardMonth = JSON.stringify(new Date(getDate).getMonth() + 1)
         let lastCreatedCardDay = JSON.stringify(new Date(getDate).getDate())
         return [lastCreatedCardDay, lastCreatedCardMonth]
     }
 
-    let dayAndMonth = fetchLastCreated()
+    const dayAndMonth = fetchLastCreated()
 
     const history = useHistory()
 

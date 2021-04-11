@@ -9,9 +9,7 @@ function App() {
       <Switch>
 
         <Route path="/" exact>
-          <div className="container d-flex vh-100 align-items-center justify-content-center">
-            <Login />
-          </div>
+          <Login />
         </Route>
 
         <Route path="/dashboard">

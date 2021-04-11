@@ -1,0 +1,11 @@
+#create-card {
+  width: 20rem;
+  height: 25rem;
+  border: none;
+  margin-top: 9em;
+}
+
+#create-button {
+  width: 5em;
+  height: 4em;
+}

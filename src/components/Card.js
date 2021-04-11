@@ -15,12 +15,13 @@ const Card = ({ cardId }) => {
     const [cardCategory, setCardCategory] = useState("")
     const [editMode, setEditMode] = useState(false)
     const [overlay, setOverlay] = useState(false)
-
+    //find selected card's title and category
     let currentCard = projects.filter((item) => item.id === cardId)[0]
     let titleOfCard = currentCard.cardTitle;
     let categoryOfCard = currentCard.category;
 
     useEffect(() => {
+        //update current card's info when state change and save it to local storage
         // eslint-disable-next-line
         currentCard = projects.filter((item) => item.id === cardId)[0];
         // eslint-disable-next-line
@@ -29,7 +30,7 @@ const Card = ({ cardId }) => {
         categoryOfCard = currentCard.category;
         localStorage.setItem("schedule-app-dashboard", JSON.stringify(projects));
     }, [projects])
-
+    //when user typing title and category keep it in state to save when submit
     const handleTitle = (e) => {
         setCardTitle(val => e.target.value)
     }
@@ -42,7 +43,9 @@ const Card = ({ cardId }) => {
         const currentProjectsCopy = [...projects];
         const withoutCurrentCard = currentProjectsCopy.filter((item) => item.id !== cardId);
         const currentCard = currentProjectsCopy.filter((item) => item.id === cardId)[0];
+        //selected card with updated title and category
         const updatedCard = { ...currentCard, cardTitle, category: cardCategory }
+        //all cards with selected card's updated version
         const updatedProject = [...withoutCurrentCard, updatedCard]
         setProjects(val => updatedProject)
         setEditMode(false)
@@ -54,8 +57,11 @@ const Card = ({ cardId }) => {
 
     const addTodoItem = (e) => {
         e.preventDefault()
+        //give an id to to-do items
         const currentCardTodosCopy = [...currentCard.todos, { id: uuidv4(), name: todo }]
+        //update card's todos
         const currentCardCopy = { ...currentCard, todos: currentCardTodosCopy }
+        //replace the card with its added todo version
         const withoutCurrentCard = projects.filter((item) => item.id !== cardId);
         const projectsCopy = [...withoutCurrentCard, currentCardCopy];
         setProjects(val => projectsCopy)
@@ -66,6 +72,7 @@ const Card = ({ cardId }) => {
         const lengthOfProjects = currentProjectsCopy.length;
         const withoutCurrentCard = currentProjectsCopy.filter((item) => item.id !== cardId);
         setProjects(val => withoutCurrentCard)
+        //if there is blank card remove it
         if (lengthOfProjects === 1) localStorage.removeItem("schedule-app-dashboard")
     }
 

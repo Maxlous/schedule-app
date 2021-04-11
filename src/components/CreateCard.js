@@ -2,6 +2,7 @@ import { RiMenuAddFill } from "react-icons/ri"
 import { useContext } from "react";
 import { dashboardContextFunc } from "../context/DashboardContext"
 import { v4 as uuidv4 } from "uuid"
+import "../styles/CreateCard.css";
 
 const CreateCard = () => {
 
@@ -14,12 +15,10 @@ const CreateCard = () => {
     }
 
     return (
-        <div style={{
-            width: "20rem", height: "25rem", border: "none", marginTop: "9em"
-        }}>
+        <div id="create-card">
             <RiMenuAddFill className="card-img-top" size="10em" />
             <div className="card-body d-flex justify-content-center">
-                <button style={{ width: "5em", height: "4em" }} onClick={createNewProject} className="btn btn-dark">New Card</button>
+                <button id="create-button" onClick={createNewProject} className="btn btn-dark">New Card</button>
             </div>
         </div >
     )

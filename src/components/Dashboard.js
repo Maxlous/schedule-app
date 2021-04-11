@@ -6,8 +6,8 @@ import CreateCard from "./CreateCard"
 const Dashboard = () => {
 
     const { checkedCategories, projects } = useContext(dashboardContextFunc);
-    let filteredArray = [];
-
+    const filteredArray = [];
+    //find the relevant cards for checked category
     for (let i = 0; i < checkedCategories.length; i++) {
         for (let j = 0; j < projects.length; j++) {
             if (checkedCategories[i] === projects[j].category.toUpperCase()) {
@@ -21,15 +21,14 @@ const Dashboard = () => {
             return new Date(a.createdOn).getTime() - new Date(b.createdOn).getTime();
         });
     };
-
+    //sort checked categories' cards
     let sortedArray = [...filteredArray]
     sortByDate(sortedArray);
-
+    //sort all of them
     let projectsCopy = [...projects]
     sortByDate(projectsCopy)
 
     useEffect(() => {
-
         for (let i = 0; i < checkedCategories.length; i++) {
             for (let j = 0; j < projects.length; j++) {
                 if (checkedCategories[i] === projects[j].category.toUpperCase()) {

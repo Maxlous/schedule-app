@@ -4,7 +4,7 @@ import "../styles/Category.css"
 const Category = ({ categoryName }) => {
 
     const { projects, checkedCategories, setCheckedCategories } = useContext(dashboardContextFunc);
-    //find how many card belong to that category
+    //find how many card belong to that particular category
     const fromThisCategory = () => {
         let sum = 0;
         for (let i = 0; i < projects.length; i++) {
@@ -14,7 +14,7 @@ const Category = ({ categoryName }) => {
     }
     //save the data to a variable
     const numberFromThisCategory = fromThisCategory();
-
+    //find which categories are selected
     const handleCheck = (e) => {
         const categoriesArray = [...checkedCategories];
         if (e.target.checked) {
@@ -28,7 +28,7 @@ const Category = ({ categoryName }) => {
 
     return (
         <li className="list-group-item border-0 mt-3 cat-list-item gm-effect d-flex flex-row justify-content-between align-items-center">
-            <input onChange={handleCheck} className="form-check-input me-3 category-checkbox" type="checkbox" value={categoryName} aria-label={categoryName} style={{ cursor: "pointer" }} />
+            <input onChange={handleCheck} className="form-check-input me-3 category-checkbox" type="checkbox" value={categoryName} aria-label={categoryName} />
             {categoryName}<span className="badge category-badge ">{numberFromThisCategory}</span>
         </li>
     )
