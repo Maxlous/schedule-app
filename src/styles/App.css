@@ -1,3 +1,6 @@
+/* for glassmorphisim effect it is highly benefited from the article of Zoltan in link below
+https://www.freecodecamp.org/news/glassmorphism-design-effect-with-html-css/?utm_source=convertkit&utm_medium=email&utm_campaign=Glassmorphism+UI+Update+%232%3A+tech+stack%2C+SVG+icons%2C+and+a+couple+of+new+components%20-%205609645 */
+
 body {
   background: #edc0bf;
   background: linear-gradient(90deg, #edc0bf 0, #c4caef 58%);

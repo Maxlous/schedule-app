@@ -1,4 +1,4 @@
-/* below checkbox style code copied from https://freefrontend.com/css-checkboxes/ */
+/* below checkbox style code copied from https://freefrontend.com/css-checkboxes/  and adopted to project accordingly*/
 .toggle {
   --uiToggleSize: var(--toggleSize, 1.25rem);
   --uiToggleBorderWidth: var(--toggleBorderWidth, 2px);

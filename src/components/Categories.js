@@ -8,6 +8,8 @@ const Categories = () => {
     //get all the categories in uppercase and save only the unique ones to a variable so that can show in categories
     const fetchCategories = projects.map((item) => item.category.toUpperCase())
     const uniqueCategoryNames = Array.from(new Set(fetchCategories))
+    //sort categories alphabetically
+    uniqueCategoryNames.sort((a, b) => a.localeCompare(b))
 
     return (
         <ul className="list-group">

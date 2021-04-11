@@ -15,8 +15,17 @@ const Card = ({ cardId }) => {
     const [cardCategory, setCardCategory] = useState("")
     const [editMode, setEditMode] = useState(false)
     const [overlay, setOverlay] = useState(false)
-    //find selected card's title and category
+
     let currentCard = projects.filter((item) => item.id === cardId)[0]
+
+    const sortByDate = (arr) => {
+        arr.sort((a, b) => {
+            return new Date(a.createdOn).getTime() - new Date(b.createdOn).getTime();
+        });
+    };
+
+    sortByDate(currentCard.todos)
+    //find selected card's title and category
     let titleOfCard = currentCard.cardTitle;
     let categoryOfCard = currentCard.category;
 
@@ -28,9 +37,10 @@ const Card = ({ cardId }) => {
         titleOfCard = currentCard.cardTitle;
         // eslint-disable-next-line
         categoryOfCard = currentCard.category;
+        sortByDate(currentCard.todos)
         localStorage.setItem("schedule-app-dashboard", JSON.stringify(projects));
     }, [projects])
-    //when user typing title and category keep it in state to save when submit
+    //when user is typing title and category keep it in state to save when submit
     const handleTitle = (e) => {
         setCardTitle(val => e.target.value)
     }
@@ -43,8 +53,17 @@ const Card = ({ cardId }) => {
         const currentProjectsCopy = [...projects];
         const withoutCurrentCard = currentProjectsCopy.filter((item) => item.id !== cardId);
         const currentCard = currentProjectsCopy.filter((item) => item.id === cardId)[0];
-        //selected card with updated title and category
-        const updatedCard = { ...currentCard, cardTitle, category: cardCategory }
+        //selected card with updated title and category, if no changes keep its previous value
+        let updatedCard;
+        if (cardCategory === "" && cardTitle === "") {
+            updatedCard = { ...currentCard, cardTitle: titleOfCard, category: categoryOfCard }
+        } else if (cardCategory === "") {
+            updatedCard = { ...currentCard, cardTitle, category: categoryOfCard }
+        } else if (cardTitle === "") {
+            updatedCard = { ...currentCard, cardTitle: titleOfCard, category: cardCategory }
+        } else {
+            updatedCard = { ...currentCard, cardTitle, category: cardCategory }
+        }
         //all cards with selected card's updated version
         const updatedProject = [...withoutCurrentCard, updatedCard]
         setProjects(val => updatedProject)
@@ -58,7 +77,7 @@ const Card = ({ cardId }) => {
     const addTodoItem = (e) => {
         e.preventDefault()
         //give an id to to-do items
-        const currentCardTodosCopy = [...currentCard.todos, { id: uuidv4(), name: todo }]
+        const currentCardTodosCopy = [...currentCard.todos, { id: uuidv4(), name: todo, isChecked: false, createdOn: new Date() }]
         //update card's todos
         const currentCardCopy = { ...currentCard, todos: currentCardTodosCopy }
         //replace the card with its added todo version
@@ -112,12 +131,12 @@ const Card = ({ cardId }) => {
                 <h5 className="card-title text-center gm-effect">{titleOfCard ? titleOfCard : ""}</h5>
                 {editMode &&
                     <div className="input-group mb-3">
-                        <input onChange={handleTitle} type="text" className="form-control" placeholder="enter a title..." id="project-title" />
+                        <input defaultValue={titleOfCard} onChange={handleTitle} type="text" className="form-control" placeholder="enter a title..." id="project-title" />
                     </div>}
                 <h6 className="text-center fw-light mb-3">{categoryOfCard ? categoryOfCard : ""}</h6>
                 {editMode &&
                     <div className="input-group mb-3">
-                        <input onChange={handleCategory} type="text" className="form-control" placeholder="enter a category..." id="project-category" />
+                        <input defaultValue={categoryOfCard} onChange={handleCategory} type="text" className="form-control" placeholder="enter a category..." id="project-category" />
                     </div>}
                 {editMode &&
                     <div className="input-group mb-3">
